@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	- Index
+{% endblock title_block %}
+
+{% block body_block %}
+	{% if user.is_authenticated %}
+		Hello, {{ request.user.username }}
+	{% endif %}
+	
+	<h1> This is index page </h1>
+{% endblock %}
+

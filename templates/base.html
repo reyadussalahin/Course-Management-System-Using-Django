@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head lang=en>
+		<meta charset="utf-8" />
+		<title>
+			Monga
+			{% block title_block %}
+			{% endblock title_block %}
+		</title>
+	</head>
+
+	<body>
+		<div>
+			<ul>
+				<li> <a href="{% url 'home' %}"> Home </a> </li>
+				{% if user.is_authenticated %}
+					<li> <a href="{% url 'course_list' request.user.username %}"> Courses </a> </li>
+					<li> <a href="{% url 'profile' request.user.username %}"> Profile </a> </li>
+					<li> <a href="{% url 'logout' %}"> Logout </a> </li>
+				{% else %}
+					<li> <a href="{% url 'register' %}"> Sign up </a> </li>
+					<li> <a href="{% url 'login' %}"> Login </a> </li>
+				{% endif %}
+			</ul>
+		</div>
+		<hr />
+
+		<!-- body block  -->
+		<!-- substitute this block as you need per page -->
+		<div>
+			{% block body_block %}
+			{% endblock body_block %}
+		</div>
+		<hr />
+		<!-- body block ends -->
+
+		
+		<div>
+			<ul>
+				<li> <a href="{% url 'about' %}"> About </a> </li>
+				<li> <a href="{% url 'index' %}"> Index </a> </li>
+			</ul>
+		</div>
+	</body>
+</html>

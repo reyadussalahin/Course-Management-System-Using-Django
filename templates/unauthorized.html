@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	- Unauthorized
+{% endblock title_block %}
+
+{% block body_block %}
+
+	<div>
+		<h1> Unauthorization </h1>
+		<p>
+			You do not have permission to view this page. Please read the following message for more information:
+		</p>
+
+		<p>
+			{{ message }}
+		</p>
+
+	</div>
+{% endblock body_block %}

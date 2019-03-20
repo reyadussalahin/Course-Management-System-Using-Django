@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block title_block %}
+	- {{ course.course_name }} Students
+{% endblock title_block %}
+
+
+{% block body_block %}
+
+	<h1> {{ course.course_name }} </h1>
+
+
+	<div>
+		{% if student_list %}
+			<p> The following students have enrolled in this course: </p>
+
+			<ul>
+				{% for student in student_list %}
+					<li>
+						<a href="{% url 'profile' student.student.username %}">
+							{{ student.student.first_name }} {{ student.student.last_name }} ({{ student.class_id}})
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p> No students enrolled yet </p>
+		{% endif %}
+	</div>
+
+
+{% endblock body_block %}

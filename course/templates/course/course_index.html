@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block title_block %}
+	- {{ course.course_name }}
+{% endblock title_block %}
+
+
+{% block body_block %}
+
+	<h1> {{ course.course_name }} </h1>
+
+
+	<div>
+		<ul>
+			{% if is_ok %}
+				<li> <a href="{% url 'student_list' course.id %}"> Students </a> </li>
+			{% endif %}
+			<li> <a href="{% url 'instructor_list' course.id %}"> Instructors </a> </li>
+		</ul>
+	</div>
+
+	{% if is_ok %}
+		<div>
+			<ul>
+				<br />
+				<li> <a href="{% url 'topic_list' course.id %}"> Materials </a> </li>
+			</ul>
+		</div>
+	{% endif %}
+
+	<div>
+		<br />
+		<p> Course provided by
+			<a href="{% url 'profile' course.creator.username %}">
+				{{ course.creator.first_name }} {{ course.creator.last_name }}
+			</a>
+		</p>
+	</div>
+
+
+{% endblock body_block %}

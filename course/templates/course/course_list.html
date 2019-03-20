@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	- Courses
+{% endblock title_block %}
+
+{% block body_block %}
+
+
+	<div>
+		{% if course_created %}
+			<h1>
+				Course Created
+			</h1>
+			<ol>
+				{% for course in course_created %}
+					<li>
+						<a href="{% url 'course_index' course.id %}">
+							{{ course.course_name }} ({{ course.session_name }})
+						</a>
+					</li>
+					<br />
+				{% endfor %}
+			</ol>
+		{% else %}
+			{% if request.user.username == username %}
+				<h1>
+					Course Created
+				</h1>
+				<p> No course created yet </p>
+			{% endif %}
+		{% endif%}
+		
+		{% if request.user.username == username %}
+			<a href="{% url 'create_course' %}">
+				<button type="button"> Create Course </button>
+			</a>
+			<br />
+		{% endif %}
+	</div>
+
+
+
+
+	<div>
+		{% if bar_before_instructed or request.user.username == username %}
+			<hr />
+		{% endif %}
+
+		{% if course_instructed %}
+			<h1>
+				Intructor of
+			</h1>
+			<ol>
+				{% for course in course_instructed %}
+					<li>
+						<a href="{% url 'course_index' course.id %}">
+							{{ course.course_name }} ({{ course.session_name }})
+						</a>
+					</li>
+					<br />
+				{% endfor %}
+			</ol>
+		{% else %}
+			{% if request.user.username == username %}
+				<h1>
+					Instructor of
+				</h1>
+				<p> No course instructed yet </p>
+			{% endif %}
+		{% endif%}
+		
+		{% if request.user.username == username %}
+			<a href="{% url 'instruct_course' %}">
+				<button type="button"> Instruct Course </button>
+			</a>
+			<br />
+		{% endif %}
+	</div>
+
+
+
+	<div>
+		{% if bar_before_enrolled or request.user.username == username %}
+			<hr />
+		{% endif %}
+		{% if course_enrolled %}
+			<h1>
+				Course Enrolled
+			</h1>
+			<ol>
+				{% for course in course_enrolled %}
+					<li>
+						<a href="{% url 'course_index' course.id %}">
+							{{ course.course_name }} ({{ course.session_name }})
+						</a>
+					</li>
+					<br />
+				{% endfor %}
+			</ol>
+		{% else %}
+			{% if request.user.username == username %}
+				<h1>
+					Course Enrolled
+				</h1>
+				<p> No course enrolled yet </p>
+			{% endif %}
+		{% endif %}
+
+		{% if request.user.username == username %}
+			<a href="{% url 'enroll_course' %}">
+				<button type="button"> Enroll Course </button>
+			</a>
+			<br />
+		{% endif %}
+	</div>
+
+
+{% endblock body_block %}

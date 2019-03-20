@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	- Topics ({{ course.course_name }})
+{% endblock title_block %}
+
+{% block body_block %}
+
+	<div>
+		<h1> {{ course.course_name }} ({{ course.session_name }})</h1>
+		<h2> Topics</h2>
+
+		{% if topic_list %}
+			<ol>
+				{% for topic in topic_list %}
+					<li>
+						<h4>
+							<a href="{% url 'material_list' topic.id %}">
+								{{ topic.topic_name }}
+							</a>
+						</h4>
+						<p> {{ topic.topic_description }} </p>
+					</li>
+				{% endfor %}
+			</ol>
+		{% else %}
+			No topics added yet
+		{% endif %}
+		<br />
+	</div>
+
+	<div>
+		{% if is_instructor %}
+			<br />
+			<a href="{% url 'add_topic' course.id %}">
+				Add Topic
+			</a>
+		{% endif %}
+	</div>
+
+{% endblock body_block %}

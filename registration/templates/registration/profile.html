@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	- Profile
+{% endblock title_block %}
+
+{% block body_block %}
+	<h1>
+		Profile
+	</h1>
+
+
+
+	<div>
+		<p>
+			<a href="{% url 'course_list' profile.user.username %}">
+				Cousre info
+			</a>
+		</p>
+	</div>
+
+
+
+	<div>
+		{% if profile.picture %}
+			<p> Profile pic: </p>
+			<a href="{{ profile.picture.url }}" download>
+				<img width="180" src="{{ profile.picture.url }}" alt="Profile picture">
+			</a>
+		{% else %}
+			<p> Profile pic: Not provided </p>
+		{% endif %}
+		<br />
+		<br />
+		Username: {{ profile.user.username }}
+		<br />
+		<br />
+		Email: {{ profile.user.email }}
+		<br />
+	</div>
+
+
+	{% if profile.user.username == request.user.username %}
+		<div>
+			<p> Edit </p>
+		</div>
+	{% endif %}
+
+{% endblock body_block %}

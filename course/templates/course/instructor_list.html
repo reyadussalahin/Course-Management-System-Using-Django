@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block title_block %}
+	- {{ course.course_name }} Instructors
+{% endblock title_block %}
+
+
+{% block body_block %}
+
+	<h1> {{ course.course_name }} </h1>
+
+
+	<div>
+		{% if instructor_list %}
+			<p> The followings are instructing this course: </p>
+
+			<ul>
+				{% for instructor in instructor_list %}
+					<li>
+						<a href="{% url 'profile' instructor.instructor.username %}">
+							{{ instructor.instructor.first_name }} {{ instructor.instructor.last_name }}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p> No instructors assigned yet </p>
+		{% endif %}
+	</div>
+
+
+{% endblock body_block %}

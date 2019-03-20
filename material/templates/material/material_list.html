@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	- Materials ({{ course.course_name }})
+{% endblock title_block %}
+
+{% block body_block %}
+
+	<div>
+		<h1> {{ topic.topic_name }}</h1>
+		<h2> Materials </h2>
+
+		{% if material_list %}
+			<ol>
+				{% for material in material_list %}
+					<li>
+						<h4>
+							<a href="{{ material.material.url }}" download>
+								{{ material.material_name }}
+							</a>
+						</h4>
+						<p> {{ material.material_description }} </p>
+					</li>
+				{% endfor %}
+			</ol>
+		{% else %}
+			No materials added yet
+		{% endif %}
+		<br />
+	</div>
+
+	<div>
+		{% if is_instructor %}
+			<br />
+			<a href="{% url 'add_material' topic.id %}">
+				Add Material
+			</a>
+		{% endif %}
+	</div>
+
+{% endblock body_block %}

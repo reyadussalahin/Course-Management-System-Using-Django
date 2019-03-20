@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	- Register
+{% endblock title_block %}
+
+{% block body_block %}
+	<h1> Register </h1>
+	<form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+		{% csrf_token %}
+
+		{% for hidden in user_form.hidden_fields %}
+			{{ hidden }}
+		{% endfor %}
+
+		{% for field in user_form.visible_fields %}
+			<div>
+				{{ field.errors }}
+				{{ field.label_tag }} {{ field }}
+				<p> {{ field.help_text }} </p>
+			</div>
+		{% endfor %}
+
+		{% for hidden in profile_form.hidden_fields %}
+			{{ hidden }}
+		{% endfor%}
+
+		{% for field in profile_form.visible_fields %}
+			<div>
+				{{ field.errors }}
+				{{ field.label_tag }} {{ field }}
+				<p> {{ field.help_text }} </p>
+			</div>
+		{% endfor %}
+
+		{% for errors in user_form.non_field_errors %}
+			<p> {{ errors }} </p>
+		{% endfor %}
+		
+		<input type="submit" name="submit" value="Sign Up">
+	</form>
+{% endblock body_block %}
+
+
