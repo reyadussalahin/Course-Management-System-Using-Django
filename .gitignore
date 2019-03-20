@@ -1,5 +1,5 @@
 #ignoring database files
-*.db
+*.sqlite3
 
 #ignoring test data
 test_data/
@@ -8,4 +8,4 @@ test_data/
 media/
 
 #ignoring population script
-population_srcipt.py
+population_script.py
